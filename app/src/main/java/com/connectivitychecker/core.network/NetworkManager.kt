@@ -27,6 +27,10 @@ class NetworkManager(private val context: Context) {
         return isVpnConnected
     }
 
+    /*
+    * "tun" is typically used to denote TUN/TAP interfaces, which are used by VPNs or similar tunneling solutions.
+    * gnirehtet uses a TUN interface for its functionality, so detecting "tun" in an interface name implies that the gnirehtet VPN is active.
+    */
     fun isGnirehtetInterfaceActive(): Boolean {
         val interfaces = NetworkInterface.getNetworkInterfaces().toList()
         val result =  interfaces.any { it.name.contains("tun", ignoreCase = true) }

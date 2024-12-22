@@ -26,10 +26,7 @@ class NetworkViewModel(
     private val _networkState = MutableStateFlow<NetworkState>(NetworkState.Loading)
     val networkState: StateFlow<NetworkState> = _networkState
 
-
     fun fetchApiData() {
-
-
         viewModelScope.launch {
             try {
                 if (networkQualityManager.isConnectedUsingGnirehtet() && networkQualityManager.isGnirehtetInterfaceActive()) {

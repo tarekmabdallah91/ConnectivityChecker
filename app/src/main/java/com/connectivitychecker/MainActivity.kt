@@ -2,7 +2,6 @@ package com.connectivitychecker
 
 import android.os.Bundle
 
-import android.Manifest
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -26,7 +25,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
 import com.connectivitychecker.app.NetworkCheckerApp
 import com.connectivitychecker.data.remote.ApiService
@@ -43,7 +41,6 @@ class MainActivity : ComponentActivity() {
             this,
             NetworkCheckerApp.getInstance().viewModelFactory
         )[NetworkViewModel::class.java]
-        requestNetworkPermissions()
         setContent {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -59,14 +56,6 @@ class MainActivity : ComponentActivity() {
         viewModel.fetchApiData()
     }
 
-    private fun requestNetworkPermissions() {
-        val permissions = arrayOf(
-            Manifest.permission.ACCESS_NETWORK_STATE,
-            Manifest.permission.INTERNET,
-            Manifest.permission.ACCESS_WIFI_STATE
-        )
-        ActivityCompat.requestPermissions(this, permissions, 1001)
-    }
 }
 
 @Composable
